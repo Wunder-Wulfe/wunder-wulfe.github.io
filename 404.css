@@ -1,9 +1,45 @@
-.wrap {
+.bg {
+	background: url('https://puu.sh/EkS5i/418f0e6b54.png');
+    background-size: cover;
+    height: 100%;
+}
+
+ .wrap {
 	text-align: center;
+    padding: 12%;
+    padding-bottom: 20%;
+    mix-blend-mode: color-dodge;
+    color: #cacadc;
+    text-shadow:
+		-1.5px -1.5px 0 #448,
+		1.5px -1.5px 0 #448,
+		-1.5px 1.5px 0 #448,
+		1.5px 1.5px 0 #448;
 }
 
 kek {
-	font-size: 2em;
-	font-family: 'Arial', Times;
+	font-size: 4.4em;
+	font-family: 'Trebuchet MS', Times;
 	display: inline-block;
+    font-weight: bold;
+}
+
+p {
+	font-size: 1.5em;
+	font-family: 'Arial', Times;
+    padding: 5px;
+    mix-blend-mode: color-dodge;
+    color: #ecc;
+    text-shadow:
+		-1.px -1.5px 0 #448,
+		1.5px -1.5px 0 #448,
+		-1.5px 1.5px 0 #448,
+		1.5px 1.5px 0 #448;
+    background: #112;
+}
+
+a {
+	font-weight: none;
+	mix-blend-mode: difference;
+	color: #defd;
 }
