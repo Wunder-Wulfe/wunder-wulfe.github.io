@@ -1,12 +1,12 @@
-body {
-	margin: 0
+html, body, .bg {
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 .bg {
 	background: url('https://puu.sh/EkS5i/418f0e6b54.png');
     background-size: cover;
-    height: 100%;
-    margin: 0;
 }
 
  .wrap {
