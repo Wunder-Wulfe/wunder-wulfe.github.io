@@ -1,5 +1,9 @@
-kek {
+wrap {
 	text-align: center;
+}
+
+kek {
 	font-size: 2em;
 	font-family: 'Arial', Times;
+	display: inline-block;
 }
