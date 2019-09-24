@@ -30,6 +30,7 @@ kek {
 }
 
 p {
+	text-align: center;
 	font-size: 1.5em;
 	font-family: 'Arial', Times;
     padding: 5px;
