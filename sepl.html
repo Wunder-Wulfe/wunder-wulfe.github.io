@@ -8,12 +8,13 @@
     </style>
   </head>
   <body>
-    2
+    3
     <script async src="//jsfiddle.net/Wunder_Wulfe/2kwx5o0q/embed/result/"></script>
     <script>
       window.addEventListener("DOMContentLoaded", e => {
           let frame = document.getElementsByTagName("iframe")[0];
           frame.height = frame.contentWindow.document.body.scrollHeight;
+          body.height = frame.height;
       });
     </script>
   </body>
