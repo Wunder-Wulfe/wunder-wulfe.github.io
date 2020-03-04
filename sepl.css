@@ -1,0 +1,224 @@
+body {
+  overflow: auto !important;
+}
+
+h1 {
+  font-size: 2.9em;
+  padding: 0px;
+}
+
+html {
+  height: 100%;
+}
+
+div,
+textarea,
+button {
+  font-family: Monospace;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+
+div {
+  width: 100%;
+  height: 150px;
+  resize: vertical;
+  overflow: auto;
+}
+
+#tbls {
+  font-family: "Arial", monospace;
+  width: 100%;
+  text-align: center;
+}
+
+ol,
+ul {
+  font-family: "Arial", monospace;
+  width: 70%;
+  text-align: left;
+}
+
+ul,
+#smt {
+  color: gray;
+  width: 55% !important;
+  font-size: 0.8em;
+}
+
+#smt {
+  font-family: "Arial", monospace;
+}
+
+li {
+  padding: 2px;
+}
+
+table {
+  width: 100%;
+  font-size: 1.1em;
+}
+
+table,
+th,
+td {
+  border: 1px black ridge;
+}
+
+a {
+  font-family: "Arial", monospace;
+  font-size: 1.2em;
+  transition: color ease-in-out 0.125s;
+  color: royalblue;
+}
+
+button {
+  font-family: Monospace !important;
+  font-size: 1.5em !important;
+  color: auto !important;
+  height: auto !important;
+  size: auto !important;
+}
+
+a:hover {
+  color: blue;
+}
+
+#pupper {
+  transition: transform 0.3s ease-in-out;
+  transform: rotate(0.1deg);
+}
+
+#pupper:hover {
+  transform: rotate(18deg);
+}
+
+.bo {
+  color: purple;
+}
+
+.op {
+  color: royalblue;
+  font-weight: bold;
+}
+
+.pw {
+  color: blue;
+  font-weight: bold;
+}
+
+.ar {
+  color: blueviolet;
+  font-weight: bold;
+}
+
+.lb {
+  color: darkorange;
+  font-weight: bold;
+}
+
+.fr {
+  color: maroon;
+  font-weight: bold;
+}
+
+.sp {
+  color: darkcyan;
+}
+
+.io {
+  color: limegreen;
+  font-weight: bold;
+}
+
+.er {
+  text-decoration: underline;
+  text-decoration-color: red;
+}
+
+.bl {
+  color: darkgreen;
+  font-weight: bold;
+}
+
+.oerr {
+  color: red;
+}
+
+.arr {
+  color: mediumvioletred;
+  font-weight: bold;
+}
+
+.cm {
+  color: grey;
+  font-weight: none;
+  font-style: italic;
+}
+
+.cm>#mini {
+  color: inherit !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
+  text-decoration: inherit !important;
+}
+
+.str>.df {
+  color: inherit !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
+  text-decoration: inherit !important;
+}
+
+.num {
+  color: green;
+}
+
+.str {
+  color: red;
+}
+
+
+#counter {
+  border: 1px silver solid;
+  color: black;
+  background-color: white;
+  overflow: auto;
+}
+
+#lines {
+  font-family: Monospace;
+  float: left;
+  width: 2%;
+  min-height: 100%;
+  height: auto;
+  border: none;
+  color: black;
+  background-color: lightgray;
+  overflow: hidden;
+  resize: none;
+  line-height: 182%;
+  font-size: 0.775em;
+}
+
+#coder {
+  float: right;
+  width: 97%;
+  left: 1%;
+  min-height: auto;
+  height: auto;
+  border: none;
+  color: black;
+  background-color: white;
+  overflow: hidden;
+  resize: none;
+}
+
+#outp {
+  background-color: black;
+  color: limegreen;
+}
