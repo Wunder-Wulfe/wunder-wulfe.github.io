@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      <link rel="stylesheet" href="sepl.css">
+      <script src="jquery-3.4.1.min.js"></script>
+    </style>
+  </head>
+  <body>
+    <span>
+      <center>
+        <a href="https://discord.gg/yUCtC2N" target="_blank">Discord</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.patreon.com/WunderWulfe" target="_blank">Patreon</a>
+      </center>
+    </span>
+    <br />
+    <br />
+    <textarea id="typer" rows=12 placeholder="Your Code Here..."></textarea>
+    <div id="counter">
+      <div id="lines">
+
+      </div>
+      <div id="coder">
+
+      </div>
+    </div>
+    <hr />
+    <button id="pressbtn" type="submit">
+      Execute
+    </button>
+    <button id="pressimp" type="submit" style="float:right;">
+      Import
+    </button>
+    <input id="pressimpd" type="file" accept=".sepl" style="display:none;">
+    <a id="exportfile" href="" download="Untitled.sepl">
+      <button id="press" type="submit" style="float:right;">
+        Export
+      </button>
+    </a>
+    <hr />
+    <div id="outp">
+
+    </div>
+    <br />
+    <center><a href="#" id="docs">Documentation</a></center>
+    <span id="tbls">
+      <center>
+        <h2>
+          Changelog
+        </h2>
+      </center>
+      <center>
+        <ul>
+          <li>(v2.0) <i>???</i> (most likely functions, array assignment, and string assignment)</li>
+          <li>(v1.9) Import / Export</li>
+          <li>(v1.8) Added dynamic scoping and arrays</li>
+          <li>(v1.7) Redid compiler and interpreter, added line numbers</li>
+          <li>(v1.6) Implemented binary operators</li>
+          <li>(v1.5) Introduced loops</li>
+          <li>(v1.4) Included Baselib</li>
+          <li>(v1.3) Generated more arithmetic operations</li>
+          <li>(v1.2) Redid website design and documentation</li>
+          <li>(v1.1) First public release</li>
+        </ul>
+      </center>
+      <center>
+        <h2>
+          Quirks
+        </h2>
+      </center>
+      <center>
+        <ol>
+          <li>SEPL stands for <b>S</b>imple <b>E</b>ducational <b>P</b>rogramming <b>L</b>anguage</li>
+          <li>SEPL isn't difficult to learn, but it is also limited to variable based operations</li>
+          <li>SEPL is based on languages like assembly mixed with lua</li>
+          <li>All operations are designed similarly, color designating a specific operation set</li>
+          <li>Clear the textbox and refresh for the default script</li>
+          <li>Cookies will be used to store your last script</li>
+          <li>All variables <b>must</b> be defined before they are used</li>
+          <li>This language is case sensitive</li>
+          <li>All errors except for eternal loops occur at compile time only</li>
+          <li>Whitespace is the only delimiting character group</li>
+          <li>This is an interpreted language, first compiling to an esoteric variant</li>
+          <li>This language is still in development</li>
+        </ol>
+      </center>
+      <center>
+        <h2>
+          Types
+        </h2>
+      </center>
+      <table id="dctbl" cols=3>
+        <tr>
+          <th>Type</th>
+          <th>Examples</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td>Keyword</td>
+          <td highlight>def set out say eq neq gt gte lt lte and or xor not neg shf inc dec mul div pow mod int sgn arr idx psh put pop len for end</td>
+          <td>Instructions / commands for the interpreter</td>
+        </tr>
+        <tr>
+          <td>Joiner</td>
+          <td highlight>to frm by as wth at in</td>
+          <td>Used to separate keyword parameters<br>All of these are completely interchangeable<br>Use the most grammatically appropriate or sensible</td>
+        </tr>
+        <tr>
+          <td>Character</td>
+          <td highlight>"?" '?'</td>
+          <td>Only 1 byte characters are allowed (no unicode)<br>The compiler replaces these with their byte values</td>
+        </tr>
+        <tr>
+          <td>Variable</td>
+          <td highlight>foo bar _AbC a12_3</td>
+          <td>These <b>must</b> start with an underscore or letter<br>They may be followed by underscores, letters, or even digits</td>
+        </tr>
+        <tr>
+          <td>Array</td>
+          <td>See above</td>
+          <td>These guys are pretty weird, explanation at bottom of docs</td>
+        </tr>
+        <tr>
+          <td>Comment</td>
+          <td highlight># single line comment
+            # terminated single line comment #
+            # escaped \# comment
+            # multiline \
+            comment</td>
+          <td>Comment functionality is complicated :P<br>These are mostly used for either storing helpful information or temporarily disabling sections of code</td>
+        </tr>
+        <tr>
+          <td>Special Character</td>
+          <td highlight>\n
+            \t</td>
+          <td>\n is a newline character<br>\t is a tab character</td>
+        </tr>
+      </table>
+      <center>
+        <h2>
+          Scoping
+        </h2>
+      </center>
+      <center>
+        Variables exist in the scope they were defined in (within the block). Attempts to access them outside of their assigned scope will result in an error unless the scope is nested. You may 'redefine' existing variables within different blocks, but the original definition will remain after exiting the scope.<br />
+      </center>
+      <hr />
+      <center>
+        <h1>
+          Manual
+        </h1>
+      </center>
+      <hr />
+      <center>
+        <h2>
+          Assignment
+        </h2>
+      </center>
+      <table id="dctbl" cols=3>
+        <tr>
+          <th>Name</th>
+          <th>Usage</th>
+          <th>Examples</th>
+        </tr>
+        <tr>
+          <td highlight>def</td>
+          <td><b>def</b>ines a variable (defaults to 0)</td>
+          <td highlight>def foo<br>def bar</td>
+        </tr>
+        <tr>
+          <td highlight>set</td>
+          <td><b>set</b>s a the value of a variable</td>
+          <td highlight>set foo to 2<br>set bar as foo</td>
+        </tr>
+      </table>
+      <center>
+        <h2>
+          I / O
+        </h2>
+      </center>
+      <table id="dctbl" cols=3>
+        <tr>
+          <th>Name</th>
+          <th>Usage</th>
+          <th>Examples</th>
+        </tr>
+        <tr>
+          <td highlight>out</td>
+          <td><b>out</b>puts the value or variable given as an integer or double</td>
+          <td highlight>out mynum
+            out 'A'
+            out 10</td>
+        </tr>
+        <tr>
+          <td highlight>say</td>
+          <td><b>say</b>s (outputs) the value or variable given as a character</td>
+          <td highlight>say mychar
+            say 'A'
+            say \n</td>
+        </tr>
+      </table>
+      <center>
+        <h2>
+          Boolean
+        </h2>
+      </center>
+      <table id="dctbl" cols=4>
+        <tr>
+          <th>Name</th>
+          <th>Usage</th>
+          <th>Examples</th>
+          <th>Operation</th>
+        </tr>
+        <tr>
+          <td highlight>eq</td>
+          <td>sets the variable to if it is <b>eq</b>ual to a value</td>
+          <td highlight>eq var1 wth var2
+            eq steps to 5</td>
+          <td>==</td>
+        </tr>
+        <tr>
+          <td highlight>neq</td>
+          <td>sets the variable to if it is <b>n</b>ot <b>eq</b>ual to a value</td>
+          <td highlight>neq phones wth laptops
+            neq apples to 1</td>
+          <td>!=</td>
+        </tr>
+        <tr>
+          <td highlight>gt</td>
+          <td>sets the variable to if it is <b>g</b>reater <b>t</b>han a value</td>
+          <td highlight>gt high frm low
+            gt counter frm 0</td>
+          <td>&gt;</td>
+        </tr>
+        <tr>
+          <td highlight>gte</td>
+          <td>sets the variable to if it is <b>g</b>reater <b>t</b>han or <b>e</b>qual to a value</td>
+          <td highlight>gte high frm low
+            gte counter frm 0</td>
+          <td>&gt;=</td>
+        </tr>
+        <tr>
+          <td highlight>lt</td>
+          <td>sets the variable to if it is <b>l</b>ess <b>t</b>han a value</td>
+          <td highlight>lt low frm high
+            lt counter frm 0</td>
+          <td>&lt;</td>
+        </tr>
+        <tr>
+          <td highlight>lte</td>
+          <td>sets the variable to if it is <b>l</b>ess <b>t</b>han or <b>e</b>qual to a value</td>
+          <td highlight>lte low frm high
+            lte counter frm 0</td>
+          <td>&lt;=</td>
+        </tr>
+        <tr>
+          <td highlight>and</td>
+          <td>performs a bitwise <b>and</b> operation</td>
+          <td highlight>and bool1 wth bool2
+            and bits wth mask</td>
+          <td>&amp;</td>
+        </tr>
+        <tr>
+          <td highlight>or</td>
+          <td>performs a bitwise <b>or</b> operation</td>
+          <td highlight>or bool1 wth bool2
+            or bits wth flag</td>
+          <td>|</td>
+        </tr>
+        <tr>
+          <td highlight>xor</td>
+          <td>performs a bitwise <b>xor</b> operation</td>
+          <td highlight>xor bool1 wth bool2
+            xor bits wth switch</td>
+          <td>^</td>
+        </tr>
+        <tr>
+          <td highlight>not</td>
+          <td>performs a boolean <b>not</b> operation, flipping the variable from truthy to falsy and vice versa</td>
+          <td highlight>not mybool
+            not pass</td>
+          <td>!</td>
+        </tr>
+        <tr>
+          <td highlight>neg</td>
+          <td>performs a bitwise <b>neg</b>ation</td>
+          <td highlight>neg mybool
+            neg field</td>
+          <td>~</td>
+        </tr>
+        <tr>
+          <td highlight>shf</td>
+          <td>performs a bitwise <b>sh</b>i<b>f</b>t to the right with positive values and left with negative ones</td>
+          <td highlight>shf mybool by 2
+            shf flagp by -7</td>
+          <td>&gt;&gt;, &lt;&lt;</td>
+        </tr>
+      </table>
+      <center>
+        <h2>
+          Arithmetic
+        </h2>
+      </center>
+      <table id="dctbl" cols=4>
+        <tr>
+          <th>Name</th>
+          <th>Usage</th>
+          <th>Examples</th>
+          <th>Operation</th>
+        </tr>
+        <tr>
+          <td highlight>inc</td>
+          <td><b>inc</b>rements the variable by a value</td>
+          <td highlight>inc money by 1
+            inc subs by 500
+            inc count by n </td>
+          <td>+=</td>
+        </tr>
+        <tr>
+          <td highlight>dec</td>
+          <td><b>dec</b>rements the variable by a value</td>
+          <td highlight>dec counter by step
+            dec apples by count
+            dec score by 10</td>
+          <td>-=</td>
+        </tr>
+        <tr>
+          <td highlight>mul</td>
+          <td><b>mul</b>tiplies the values, storing the result in the initial variable</td>
+          <td highlight>mul binsize by 2
+            mul base by height
+            mul price by tax</td>
+          <td>*=</td>
+        </tr>
+        <tr>
+          <td highlight>div</td>
+          <td><b>div</b>ides the values, storing the result in the initial variable</td>
+          <td highlight>div binsize by 2
+            div total by 10
+            div sum by total</td>
+          <td>/=</td>
+        </tr>
+        <tr>
+          <td highlight>pow</td>
+          <td>raises the variable to the value'ths <b>pow</b>er</td>
+          <td highlight>pow mynum to 2
+            pow x to 3
+            pow a to n</td>
+          <td>**=</td>
+        </tr>
+        <tr>
+          <td highlight>mod</td>
+          <td>performs the <b>mod</b>ulus operator
+          <td highlight>mod mynum by 2</td>
+          <td>%=</td>
+        </tr>
+      </table>
+      <center>
+        <h2>
+          Baselib
+        </h2>
+      </center>
+      <table id="dctbl" cols=4>
+        <tr>
+          <th>Name</th>
+          <th>Usage</th>
+          <th>Examples</th>
+          <th>Operation</th>
+        </tr>
+        <tr>
+          <td highlight>int</td>
+          <td>converts the variable into an <b>int</b>eger</td>
+          <td highlight>int double</td>
+          <td>floor</td>
+        </tr>
+        <tr>
+          <td highlight>sgn</td>
+          <td>converts the variable to its <b>s</b>i<b>gn</b></td>
+          <td highlight>sgn posval</td>
+          <td>sign</td>
+        </tr>
+      </table>
+      <center>
+        <h2>
+          Array
+        </h2>
+      </center>
+      <table id="dctbl" cols=4>
+        <tr>
+          <th>Name</th>
+          <th>Usage</th>
+          <th>Examples</th>
+          <th>Operation</th>
+        </tr>
+        <tr>
+          <td highlight>arr</td>
+          <td>defines an <b>arr</b>ay</td>
+          <td highlight>arr mylist
+            arr mystring</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td highlight>len</td>
+          <td>assigns the <b>length</b> of an array to a variable</td>
+          <td highlight>len nums to lnum
+            len characters to strlen</td>
+          <td>length</td>
+        </tr>
+        <tr>
+          <td highlight>idx</td>
+          <td><b>i</b>n<b>d</b>e<b>x</b> an array at a given position</td>
+          <td highlight>idx nums at lnum to temp
+            idx characters by counter to char</td>
+          <td>[]</td>
+        </tr>
+        <tr>
+          <td highlight>put</td>
+          <td><b>put</b>s a value into an array at a given position</td>
+          <td highlight>put num in nums at 0
+            put mychar in characters at charl</td>
+          <td>[]=</td>
+        </tr>
+        <tr>
+          <td highlight>psh</td>
+          <td><b>p</b>u<b>sh</b>es a value into an array</td>
+          <td highlight>psh num to nums
+            psh 'A' to characters</td>
+          <td>push</td>
+        </tr>
+        <tr>
+          <td highlight>pop</td>
+          <td><b>pop</b>s a value off of the end of an array</td>
+          <td highlight>pop nums to num
+            pop characters to lastchar</td>
+          <td>pop</td>
+        </tr>
+      </table>
+      <center>
+        <h2>
+          Control
+        </h2>
+      </center>
+      <table id="dctbl" cols=4>
+        <tr>
+          <th>Name</th>
+          <th>Usage</th>
+          <th>Examples</th>
+          <th>Operation</th>
+        </tr>
+        <tr>
+          <td highlight>for ... end</td>
+          <td>while the variable is non-zero, execute the contained code block</td>
+          <td highlight>for counter
+            out counter
+            dec counter by 1
+            end</td>
+          <td>while</td>
+        </tr>
+      </table>
+    </span>
+    <br /><br />
+    <center><a href="https://www.omfgdogs.com/" target="_blank" style="text-decoration:none !important"><img id="pupper" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/153/dog-face_1f436.png" width="5%" alt="pupper" /><br /><small style="font-family:'Arial', monospace;font-size:.7em;padding: 0px;">(epilepsy warning)</small></a></center><br /><br />
+    <script src="sepl.js"></script>
+  </body>
+</html>
