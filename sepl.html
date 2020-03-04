@@ -1,13 +1,19 @@
 <html>
   <head>
     <style>
-      iframe {
-        overflow: hidden;  
-        size: 100%;
+      html, body {
+        min-height: 100%;
+        height: 100%;
       }
     </style>
   </head>
   <body>
     <script async src="//jsfiddle.net/Wunder_Wulfe/2kwx5o0q/embed/result/"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", e => {
+          let frame = document.getElementByTagName("iframe");
+          frame.height = frame.contentWindow.document.body.scrollHeight;
+      });
+    </script>
   </body>
 </html>
