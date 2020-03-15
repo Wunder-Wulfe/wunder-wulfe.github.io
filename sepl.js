@@ -282,7 +282,9 @@ function compile() {
   let text = typer.value
     .replace(/(#(?:\\\#|\\\n|[^\n#])*#?)/g, '')
     .replace(/\\n/g, '10')
-    .replace(/\\t/g, '9');
+    .replace(/\\t/g, '9')
+    .replace(/\btrue\b/g, '1')
+    .replace(/\bfalse\b/g, '0');
   printHTML(outp, text);
   text = text.replace(/\n/g, ' ## ');
   state.matches = text.match(/((['"])(?:[\s\S]?|&.+;)(?:\2))|(\S+)/ig);
