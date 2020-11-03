@@ -20,6 +20,7 @@ const get = async function() {
 	const request = new XMLHttpRequest();
 	request.responseType = 'json';
 	request.open("GET", endpoint);
+	request.setRequestHeader("Access-Control-Allow-Origin", "*");
 	request.send();
 	return new Promise(resolve => {
 		request.onload = data => {
