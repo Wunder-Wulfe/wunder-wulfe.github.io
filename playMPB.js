@@ -16,8 +16,12 @@ const sweats = [
   194829277
 ];
 
-const get = url => {
-	return new Promise(resolve => $.getJSON(url, result => resolve(result)));
+const get = function(url) {
+	return new Promise(resolve => $.ajax({
+    		dataType: "jsonp",
+    		url: url,
+   		success: result => resolve(result)
+  	}));
 }
 
 const contains = (arr2, arr1) => {
