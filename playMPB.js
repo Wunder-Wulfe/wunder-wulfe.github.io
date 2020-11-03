@@ -32,13 +32,17 @@ const severity = val => {
 	return val == "alert" ? 2 : (val == "warn" ? 1 : 0);
 }
 
+let curSevereness = 0;
 const pickResponse = function(index) {
-	if (severity(resultBox.class))
+	let sev = severity(resultBox.class);
+	if (sev >= curSevereness) {
 		[
 			resultBox.class, 
 			resultBox.textContent, 
 			reasonBox.textContent
 		] = Responses[index];
+		curSevereness = sev;
+	}
 }
 
 const answer = async function() {
