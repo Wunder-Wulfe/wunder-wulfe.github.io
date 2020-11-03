@@ -17,7 +17,7 @@ const sweats = [
 ];
 
 const get = async function() {
-	return new Promise(resolve => $.getJSON(endpoint, result => resolve(result.data[0])));
+	return new Promise(resolve => $.getJSON(endpoint, resolve));
 }
 
 const contains = (arr2, arr1) => {
