@@ -21,7 +21,7 @@ const get = async function() {
 }
 
 const contains = (arr1, arr2) => {
-	return arr2.every(i => arr1.includes(i));
+	return arr1.some(i => arr2.includes(i));
 }
 
 const severity = val => {
