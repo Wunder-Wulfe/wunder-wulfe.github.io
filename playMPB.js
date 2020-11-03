@@ -43,6 +43,7 @@ const pickResponse = function(index) {
 
 const answer = async function() {
 	const result = await get();
+	console.log(result);
 	let maxPlaying = 0;
 	let sweats = 0;
 	pickResponse(4);
