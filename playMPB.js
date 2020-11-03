@@ -1,4 +1,4 @@
-const endpoint = "//games.roblox.com/v1/games/4953508391/servers/Public";
+const endpoint = "playMPB.php";
 const resultBox = $("#result");
 const reasonBox = $("#reason");
 
