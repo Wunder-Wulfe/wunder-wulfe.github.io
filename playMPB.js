@@ -47,7 +47,9 @@ const answer = async function() {
 	let maxPlaying = 0;
 	let sweats = 0;
 	pickResponse(4);
-	for (let server of result.data) {
+	for (var server of result.data) {
+		console.log(server);
+		console.log(server.playerIds);
 		maxPlaying = Math.max(maxPlaying, server.playing);
 		if (contains(server.playerIds, sweats))
 			pickResponse(0);
