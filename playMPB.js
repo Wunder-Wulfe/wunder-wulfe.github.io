@@ -20,8 +20,8 @@ const get = async function() {
 	return new Promise(resolve => $.getJSON(endpoint, resolve));
 }
 
-const contains = (arr2, arr1) => {
-	return arr1.every(i => arr2.includes(i));
+const contains = (arr1, arr2) => {
+	return arr2.every(i => arr1.includes(i));
 }
 
 const severity = val => {
