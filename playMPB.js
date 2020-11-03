@@ -17,17 +17,7 @@ const sweats = [
 ];
 
 const get = async function() {
-	const request = new XMLHttpRequest();
-	request.responseType = 'json';
-	request.open("GET", endpoint);
-	request.setRequestHeader("Access-Control-Allow-Origin", "*");
-	request.send();
-	return new Promise(resolve => {
-		request.onload = data => {
-			if (xhr.readyState === 4 && xhr.status === 200)
-				resolve(data);
-		}
-	});
+	return new Promise(resolve => $.getJSON(endpoint, resolve));
 }
 
 const contains = (arr2, arr1) => {
