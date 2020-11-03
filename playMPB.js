@@ -1,4 +1,4 @@
-const endpoint = "playMPB.php";
+const endpoint = "//cors-anywhere.herokuapp.com/https://games.roblox.com/v1/games/4953508391/servers/Public";
 const resultBox = $("#result");
 const reasonBox = $("#reason");
 
@@ -17,7 +17,7 @@ const sweats = [
 ];
 
 const get = async function() {
-	return new Promise(resolve => $.getJSON(endpoint, resolve));
+	return new Promise(resolve => $.getJSON(, result => console.log(result.data[0])));
 }
 
 const contains = (arr2, arr1) => {
