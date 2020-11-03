@@ -16,12 +16,17 @@ const sweats = [
 	194829277
 ];
 
-const get = function(url) {
-	return new Promise(resolve => $.ajax({
-    		dataType: "jsonp",
-    		url: url,
-   		success: result => resolve(result)
-  	}));
+const get = async function() {
+	const request = new XMLHttpRequest();
+	request.responseType = 'json';
+	request.open("GET", endpoint);
+	request.send();
+	return new Promise(resolve => {
+		request.onload = data => {
+			if (xhr.readyState === 4 && xhr.status === 200)
+				resolve(data);
+		}
+	});
 }
 
 const contains = (arr2, arr1) => {
@@ -29,7 +34,7 @@ const contains = (arr2, arr1) => {
 }
 
 const severity = val => {
-	return val == "alert" ? 2 : (val == "warn" ? 1 : 0);
+	return val === "alert" ? 2 : (val === "warn" ? 1 : 0);
 }
 
 let curSevereness = 0;
@@ -46,7 +51,7 @@ const pickResponse = function(index) {
 }
 
 const answer = async function() {
-	const result = await get(endpoint);
+	const result = await get();
 	let maxPlaying = 0;
 	let sweats = 0;
 	pickResponse(4);
@@ -57,7 +62,7 @@ const answer = async function() {
 		else if (server.ping >= 100)
 			pickResponse(2);
 	}
-	if (result.data.length == 0)
+	if (result.data.length === 0)
 		pickResponse(3);
 	else if (maxPlaying <= 5)
 		pickResponse(1);
