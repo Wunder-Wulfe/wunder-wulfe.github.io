@@ -1,6 +1,6 @@
 const endpoint = "//cors-anywhere.herokuapp.com/https://games.roblox.com/v1/games/4953508391/servers/Public";
-const resultBox = $("#result");
-const reasonBox = $("#reason");
+const resultBox = $("#result").get(0);
+const reasonBox = $("#reason").get(0);
 
 const Responses = [
 	["warn", "Maybe?", "Theres a few sweats online"],
