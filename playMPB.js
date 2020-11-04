@@ -33,11 +33,10 @@ const pickResponse = function(index) {
 	let sev = severity(resultBox.class);
 	if (sev >= curSevereness) {
 		[
-			resultBox.class, 
+			resultBox.className, 
 			resultBox.textContent, 
 			reasonBox.textContent
 		] = Responses[index];
-		resultBox.class = Responses[index][0];
 		curSevereness = sev;
 	}
 }
