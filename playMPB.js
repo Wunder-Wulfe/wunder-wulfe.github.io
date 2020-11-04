@@ -9,7 +9,8 @@ const Responses = [
 	["alert", "No.", "Nobody is playing"],
 	["alert", "No.", "Unless you want to say hello to the only player"],
 	["alert", "No.", "Everyone on the server is sweaty"],
-	["success", "Sure.", "There's quite a few people playing"]
+	["success", "Sure.", "There's quite a few people playing"],
+	["warn", "Maybe?", "Looks like theres a 1 v 1 going on"],
 ];
 
 const sweats = [
@@ -68,6 +69,8 @@ const answer = async function() {
 		pickResponse(3);
 	else if (maxPlaying === 1)
 		pickResponse(4);
+	else if (maxPlaying === 2)
+		pickResponse(7);
 	else if (maxPlaying <= 5)
 		pickResponse(1);
 }
