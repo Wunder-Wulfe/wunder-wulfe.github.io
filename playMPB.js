@@ -43,7 +43,6 @@ const pickResponse = function(index) {
 
 const answer = async function() {
 	const result = await get();
-	console.log(result);
 	let maxPlaying = 0;
 	pickResponse(4);
 	for (var server of result.data) {
