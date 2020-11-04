@@ -3,10 +3,11 @@ const resultBox = $("#result").get(0);
 const reasonBox = $("#reason").get(0);
 
 const Responses = [
-	["warn", "Maybe?", "Theres a few sweats online"],
+	["warn", "Maybe?", "Theres one or more sweats online"],
 	["warn", "Maybe?", "The server is pretty empty"],
 	["warn", "Maybe?", "The ping is prety high"],
 	["alert", "No.", "Nobody is playing"],
+	["alert", "No.", "Everyone on the server is sweaty"],
 	["success", "Sure.", "There's quite a few people playing"]
 ];
 
@@ -21,7 +22,11 @@ const get = async function() {
 }
 
 const contains = (arr1, arr2) => {
-	return arr1.some(i => arr2.includes(i));
+	let occurrences = 0;
+	for (var item of arr1)
+		if (arr2.includes(item))
+			occurrences++;
+	return occurrences;
 }
 
 const severity = val => {
@@ -44,10 +49,14 @@ const pickResponse = function(index) {
 const answer = async function() {
 	const result = await get();
 	let maxPlaying = 0;
-	pickResponse(4);
+	let count;
+	pickResponse(5);
 	for (var server of result.data) {
 		maxPlaying = Math.max(maxPlaying, server.playing);
-		if (contains(server.playerIds, sweats))
+		count = contains(server.playerIds, sweats);
+		if (count == maxPlaying)
+			pickResponse(4);
+		else if (count > 0)
 			pickResponse(0);
 		else if (server.ping >= 100)
 			pickResponse(2);
