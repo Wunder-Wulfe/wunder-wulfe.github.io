@@ -15,7 +15,8 @@ const sweats = [
 	347826216,	// bIuejaay
 	284533122,	// jeffmlgrekt
 	194829277,	// Stranglings
-	60840677	// hackerDuDMeN
+	60840677,	// hackerDuDMeN
+	56460109	// soccerfan4321
 ];
 
 const get = async function() {
