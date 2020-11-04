@@ -21,6 +21,7 @@ const get = async function() {
 }
 
 const contains = (arr1, arr2) => {
+	console.log(arr1, arr2, arr1.includes, arr2.includes);
 	return arr1.some(i => arr2.includes(i));
 }
 
