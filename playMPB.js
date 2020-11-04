@@ -21,7 +21,6 @@ const get = async function() {
 }
 
 const contains = (arr1, arr2) => {
-	console.log(arr1, arr2, arr1.includes, arr2.includes);
 	return arr1.some(i => arr2.includes(i));
 }
 
@@ -46,11 +45,8 @@ const answer = async function() {
 	const result = await get();
 	console.log(result);
 	let maxPlaying = 0;
-	let sweats = 0;
 	pickResponse(4);
 	for (var server of result.data) {
-		console.log(server);
-		console.log(server.playerIds);
 		maxPlaying = Math.max(maxPlaying, server.playing);
 		if (contains(server.playerIds, sweats))
 			pickResponse(0);
