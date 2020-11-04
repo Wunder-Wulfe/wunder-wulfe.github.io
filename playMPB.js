@@ -12,9 +12,10 @@ const Responses = [
 ];
 
 const sweats = [
-	347826216, // bIuejaay
-	284533122, // jeffmlgrekt
-	194829277 // Stranglings
+	347826216,	// bIuejaay
+	284533122,	// jeffmlgrekt
+	194829277,	// Stranglings
+	60840677	// hackerDuDMeN
 ];
 
 const get = async function() {
