@@ -37,6 +37,7 @@ const pickResponse = function(index) {
 			resultBox.textContent, 
 			reasonBox.textContent
 		] = Responses[index];
+		resultBox.class = Responses[index][0];
 		curSevereness = sev;
 	}
 }
