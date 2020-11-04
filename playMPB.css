@@ -13,18 +13,23 @@
 }
 
 .header {
-  font-size: 3em;
+  font-size: 3.25em;
   animation: loadIn 1.5s ease-in-out both;
 }
 
 #result {
-  font-size: 2em;
+  font-size: 2.25em;
   animation: loadIn 1.8s 2.2s ease-in-out both;
 }
 
 #reason {
-  font-size: 2em;
+  font-size: 2.25em;
   animation: loadIn 1.8s 2.5s ease-in-out both;
+}
+
+.warn .alert .success {
+  font-weight: bold; 
+  font-size: 2.5em;
 }
 
 .warn {
