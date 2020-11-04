@@ -7,6 +7,7 @@ const Responses = [
 	["warn", "Maybe?", "The server is pretty empty"],
 	["warn", "Maybe?", "The ping is prety high"],
 	["alert", "No.", "Nobody is playing"],
+	["alert", "No.", "Unless you want to say hello to the only player"],
 	["alert", "No.", "Everyone on the server is sweaty"],
 	["success", "Sure.", "There's quite a few people playing"]
 ];
@@ -52,12 +53,12 @@ const answer = async function() {
 	const result = await get();
 	let maxPlaying = 0;
 	let count;
-	pickResponse(5);
+	pickResponse(6);
 	for (var server of result.data) {
 		maxPlaying = Math.max(maxPlaying, server.playing);
 		count = contains(server.playerIds, sweats);
 		if (count == maxPlaying)
-			pickResponse(4);
+			pickResponse(5);
 		else if (count > 0)
 			pickResponse(0);
 		else if (server.ping >= 100)
@@ -65,6 +66,8 @@ const answer = async function() {
 	}
 	if (result.data.length === 0)
 		pickResponse(3);
+	else if (maxPlaying === 1)
+		pickResponse(4);
 	else if (maxPlaying <= 5)
 		pickResponse(1);
 }
